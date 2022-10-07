@@ -16,13 +16,13 @@ import axios from 'axios';
 
 const App = () => {
   const [users, setUsers] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentCards, setcurrentCards] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
   const getUsers = () => {
     setIsLoading(true);
     axios
-      .get(`https://randomuser.me/api/?page=${currentPage}&results=2`)
+      .get(`https://randomuser.me/api/?page=${currentCards}&results=2`)
       .then(res => {
         // setUsers(res.data.results);
         setUsers([...users, ...res.data.results]);
@@ -59,12 +59,12 @@ const App = () => {
   };
 
   const loadMoreItem = () => {
-    setCurrentPage(currentPage + 1);
+    setcurrentCards(currentCards + 1);
   };
 
   useEffect(() => {
     getUsers();
-  }, [currentPage]);
+  }, [currentCards]);
 
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
