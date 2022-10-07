@@ -41,6 +41,9 @@ const App = () => {
           <Text style={styles.txtNameStyle}>
             {`${item.name.title} ${item.name.first} ${item.name.last}`}
           </Text>
+          <Text style={styles.txtAddress}>
+            {`${item.location.street.number}, ${item.location.street.name}, ${item.location.state}`}
+          </Text>
           <Text style={styles.txtEmailStyle}>{item.email}</Text>
         </View>
       </View>
@@ -64,7 +67,9 @@ const App = () => {
   }, [currentPage]);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.safeAreaStyle}>
+      <Text style={styles.titleStyle}>Customers</Text>
+      {/* <View style={styles.testViewStyle}> */}
       <FlatList
         data={users}
         renderItem={renderItem}
@@ -73,6 +78,7 @@ const App = () => {
         onEndReached={loadMoreItem}
         onEndReachedThreshold={0}
       />
+      {/* </View> */}
     </SafeAreaView>
   );
 };
@@ -82,22 +88,45 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 16,
     paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderColor: '#ddd',
+    borderRadius: 10,
+    backgroundColor: 'hsl(96, 10%, 92%)',
+    marginBottom: 20,
+    overflow: 'hidden',
+    // borderBottomWidth: 10,
+    // borderColor: 'green',
+  },
+  titleStyle: {
+    fontSize: 30,
+    fontWeight: '700',
+    color: 'white',
+  },
+  // testViewStyle: {
+  //   backgroundColor: 'green',
+  // },
+  safeAreaStyle: {
+    backgroundColor: 'hsl(106, 13%, 50%)',
+    paddingHorizontal: 16,
+    paddingVertical: 16,
   },
   itemImageStyle: {
-    width: 50,
-    height: 50,
+    width: 80,
+    height: 80,
     marginRight: 16,
+    borderRadius: 5,
   },
   contentWrapperStyle: {
     justifyContent: 'space-around',
   },
   txtNameStyle: {
-    fontSize: 16,
+    fontSize: 20,
+    fontWeight: '700',
+    color: 'black',
+  },
+  txtAddress: {
+    color: 'black',
   },
   txtEmailStyle: {
-    color: '#777',
+    color: 'hsl(324, 32%, 50%)',
   },
   loaderStyle: {
     marginVertical: 16,
